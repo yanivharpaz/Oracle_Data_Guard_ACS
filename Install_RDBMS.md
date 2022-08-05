@@ -33,6 +33,13 @@ sudo yum localinstall -y oracle-database-preinstall-19c-1.0-2.el7.x86_64.rpm
 sudo yum localinstall -y oracle-database-ee-19c-1.0-1.x86_64.rpm
 
 ```
+  
+To configure a sample Oracle Database you can execute the following service configuration script as root: /etc/init.d/oracledb_ORCLCDB-19c configure   
+
+## Install a sample database
+```
+sudo /etc/init.d/oracledb_ORCLCDB-19c configure
+```
 
 
 Thank you for reading.  
