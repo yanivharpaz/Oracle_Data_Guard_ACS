@@ -2,12 +2,12 @@
 
 ## Prep install git and wget
 ```
+# install git
 sudo yum install -y git wget
-```
 
-## Clone the scripts
-```
-git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git
+# Clone the scripts repo
+git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git  
+
 ```
 
 ## Execute the yum prep script
@@ -40,6 +40,18 @@ To configure a sample Oracle Database you can execute the following service conf
 ```
 sudo /etc/init.d/oracledb_ORCLCDB-19c configure
 ```
+
+## Run everything
+```
+cp ./misc/oracle_rdbms_config_sample.conf /tmp
+
+sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
+./Oracle_Data_Guard_ACS/scripts/010_yum_prep.sh
+./Oracle_Data_Guard_ACS/scripts/030_sw_dl.sh
+./Oracle_Data_Guard_ACS/scripts/050_install_sw.sh
+
+```
+
 
 
 Thank you for reading.  
