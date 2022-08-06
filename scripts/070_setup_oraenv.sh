@@ -1,4 +1,4 @@
-
+echo "Configuring ORACLE_HOME and ORACLE_SID"
 sudo cp -pv ~oracle/.bashrc /tmp/oracle_bashrc
 sudo chmod 777 /tmp/oracle_bashrc
 
