@@ -1,5 +1,5 @@
 
-sudo cp ~oracle/.bashrc /tmp/oracle_bashrc
+sudo cp -pv ~oracle/.bashrc /tmp/oracle_bashrc
 sudo chmod 777 /tmp/oracle_bashrc
 
 sudo cat >> /tmp/oracle_bashrc << EOF
