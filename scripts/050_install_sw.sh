@@ -7,4 +7,7 @@ sudo sed 's/ORACLE_SID=ORCLCDB/ORACLE_SID=CDB1/g' /etc/init.d/oracledb_ORCLCDB-1
 sudo chmod +x /tmp/setup_cdb1.sh
 
 echo "Setup CDB1 - under root execute: /tmp/setup_cdb1.sh configure "
-sudo cp -pv /tmp/setup_cdb1.sh ~/Oracle_Data_Guard_ACS/scripts
+sudo cp -pv /tmp/setup_cdb1.sh ~/Oracle_Data_Guard_ACS/scripts/
+sudo cp -pv /etc/sysconfig/oracledb_ORCLCDB-19c.conf /etc/sysconfig/oracledb_CDB1-19c.conf
+
+
