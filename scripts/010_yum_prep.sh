@@ -21,3 +21,23 @@ sudo yum install -y yum-utils zip unzip htop
 sudo yum -y groupinstall "Development Tools"
 sudo yum -y install openssl-devel bzip2-devel libffi-devel xz-devel
 
+
+cat >> ~/.bashrc << EOF
+
+alias pmon='ps -ef | grep pmon | grep -v grep'
+alias ll='ls -ltrh'
+
+EOF
+
+
+# # create a function that checks if the oracle database is running and if it is it returns 0 otherwise it returns 1
+# function check_ora_db_running() {
+#     if [ -z "$(ps -ef | grep ora_pmon | grep -v grep)" ]; then
+#         echo "got a pmon running"
+#         return 1
+#     else
+#         echo "no pmon running"
+#         return 0
+#     fi
+# }
+
