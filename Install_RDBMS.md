@@ -43,6 +43,7 @@ sudo /etc/init.d/oracledb_ORCLCDB-19c configure
 
 ## Run everything
 ```
+cd ~
 cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
 
 sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
