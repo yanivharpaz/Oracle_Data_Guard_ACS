@@ -1,4 +1,7 @@
-# Install RDBMS on Centos
+# Install Oracle RDBMS on Centos / Oracle Linux  
+
+Use this guide / script only for testing and learning purpose 
+
 
 ## Prep install git and wget
 ```
