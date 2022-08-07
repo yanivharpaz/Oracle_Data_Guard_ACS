@@ -12,6 +12,7 @@ export PATH=\$PATH:\$ORACLE_HOME/bin
 alias sss='sqlplus / as sysdba'
 alias pmon='ps -ef | grep pmon | grep -v grep'
 alias cdnet='cd $ORACLE_HOME/network/admin'
+alias ll='ls -ltrh'
 
 EOF
 
