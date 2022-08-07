@@ -1,5 +1,11 @@
 #!/bin/bash
 echo "yum install RPMs for the Oracle RDMS Software"
+
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_COLLATE=C
+export LC_CTYPE=en_US.UTF-8
+
 sudo yum update -y
 
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
