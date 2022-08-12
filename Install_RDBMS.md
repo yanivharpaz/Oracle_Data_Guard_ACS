@@ -73,7 +73,7 @@ cat ~/.ssh/id_rsa.pub
 
 ```
 
-## TEST connectivity on port (with a python one liner)
+## Test connectivity on port (with a python one liner)
 ### this example tries to connect to 10.0.1.5 on port 22
 ```
 export REMOTE_NODE=10.0.1.5

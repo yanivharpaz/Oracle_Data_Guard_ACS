@@ -321,6 +321,55 @@ configure_delete()
     fi
 }
 
+
+# To start the DB
+prep_dg_01()
+{
+    check_for_configuration
+    RETVAL=$?
+    if [ $RETVAL -eq 1 ]
+    then
+        echo "The Oracle Database is not configured. You must run '/etc/init.d/oracledb_$ORACLE_SID-$ORACLE_VERSION configure' as the root user to configure the database."
+        exit
+    fi
+    # Check if the DB is already started
+    pmon=`ps -ef | egrep pmon_$ORACLE_SID'\>' | $GREP -v grep`
+    if [ "$pmon" != "" ];
+    then
+
+        # Unset the proxy env vars before calling sqlplus
+        unset_proxy_vars
+
+        echo "Putting Oracle instance in archivelog $ORACLE_SID."
+        $SU -s /bin/bash  $ORACLE_OWNER -c "$SQLPLUS -s /nolog << EOF
+                                                                connect / as sysdba
+                                                                spool x.x
+                                                                SELECT log_mode FROM v$database;
+                                                                spool off
+                                                                exit;
+                                                                EOF" > /dev/null 2>&1
+        RETVAL1=$?
+        if [ $RETVAL1 -eq 0 ]
+        then
+            echo "Oracle Database instance $ORACLE_SID started."
+        fi
+    else
+        echo "Oracle instance not running $ORACLE_SID."
+        exit 0
+    fi
+
+    echo
+    if [ $RETVAL -eq 0 ] && [ $RETVAL1 -eq 0 ]
+    then
+        return 0
+     else
+        echo "Failed to start Oracle Net Listener using $ORACLE_HOME/bin/tnslsnr and Oracle Database using $ORACLE_HOME/bin/sqlplus."
+        exit 1
+    fi
+}
+
+
+
 case "$1" in
     start)
         start
@@ -336,6 +385,9 @@ case "$1" in
     ;;
     restart)
         restart
+    ;;
+    prep01)
+        prep_dg_01
     ;;
     *)
         echo $"Usage: $0 {start|stop|restart|configure|delete}"
