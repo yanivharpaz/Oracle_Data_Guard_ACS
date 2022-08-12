@@ -138,4 +138,6 @@ prep_dg_01()
 }
 
 
+prep_dg_01
+
 exit 0
