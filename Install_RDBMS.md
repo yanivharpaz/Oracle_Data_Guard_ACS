@@ -64,6 +64,35 @@ sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ```
 
 
+## Connect with password-less SSH
+### Generate ssh keys  
+ (Make sure you have open access with port 22)
+```
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
+cat ~/.ssh/id_rsa.pub
+
+```
+
+## TEST connectivity on port (with a python one liner)
+### this example tries to connect to 10.0.1.5 on port 22
+```
+export REMOTE_NODE=10.0.1.5
+export PORT_TO_CHECK=22
+
+python -c 'import socket; import sys; s = socket.socket(socket.AF_INET); s.settimeout(5.0); s.connect((sys.argv[1], int(sys.argv[2]))); s.close();' $REMOTE_NODE $PORT_TO_CHECK
+
+```
+
+### Test output meaning:
+* it will complete without any message immediately. 
+* If it's closed, you will get this exception  
+```
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.timeout: timed out
+```
 
 Thank you for reading.  
   
