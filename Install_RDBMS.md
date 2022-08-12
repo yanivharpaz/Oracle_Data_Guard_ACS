@@ -44,7 +44,7 @@ To configure a sample Oracle Database you can execute the following service conf
 sudo /etc/init.d/oracledb_ORCLCDB-19c configure
 ```
 
-## Run everything
+## Run prep -> software installation 
 ```
 cd ~
 cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
