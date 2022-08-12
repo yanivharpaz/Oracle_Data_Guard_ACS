@@ -14,7 +14,8 @@ case $PATH in
 esac
 
 # Setting the required environment variables
-export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1 
+export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export ORACLE_BASE=/opt/oracle 
 
 export ORACLE_VERSION=19c 
 export ORACLE_SID=ORCLCDB
@@ -113,10 +114,32 @@ prep_dg_01()
                                                                 connect / as sysdba
                                                                 spool /tmp/x.x
                                                                 set echo on
-                                                                SELECT log_mode FROM v\$database;
+                                                                SELECT log_mode FROM v\\\$database;
+                                                                select member from v\\\$logfile;
+                                                                alter system set db_recovery_file_dest_size=10G scope=both sid='*';
+                                                                alter system set db_recovery_file_dest='$ORACLE_BASE/oradata' scope=both sid='*';
+                                                                REM SHUTDOWN IMMEDIATE;
+                                                                REM STARTUP MOUNT;
+                                                                REM ALTER DATABASE ARCHIVELOG;
+                                                                REM ALTER DATABASE OPEN;
+                                                                ALTER DATABASE FORCE LOGGING;
+                                                                ALTER SYSTEM SWITCH LOGFILE;
+                                                                select 'Oracle SID: $ORACLE_SID' AS SID FROM DUAL;
+
+                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo01.log') SIZE 200M;
+                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo02.log') SIZE 200M;
+                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo03.log') SIZE 200M;
+                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo04.log') SIZE 200M;
+
+
+                                                                ALTER DATABASE FLASHBACK ON;
+                                                                ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;
+
+                                                                SELECT log_mode FROM v\\\$database;
+                                                                select member from v\\\$logfile;
                                                                 spool off
                                                                 exit;
-                                                                EOF" > /dev/null 2>&1
+                                                                EOF" 
         RETVAL1=$?
         if [ $RETVAL1 -eq 0 ]
         then
@@ -139,5 +162,7 @@ prep_dg_01()
 
 
 prep_dg_01
+
+cat /tmp/x.x
 
 exit 0
