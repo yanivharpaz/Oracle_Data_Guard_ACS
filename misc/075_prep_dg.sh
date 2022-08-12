@@ -106,7 +106,7 @@ prep_dg_01()
     then
 
         # Unset the proxy env vars before calling sqlplus
-        unset_proxy_vars
+        # unset_proxy_vars
 
         echo "Putting Oracle instance in archivelog $ORACLE_SID."
         $SU -s /bin/bash  $ORACLE_OWNER -c "$SQLPLUS -s /nolog << EOF
