@@ -344,6 +344,7 @@ prep_dg_01()
         $SU -s /bin/bash  $ORACLE_OWNER -c "$SQLPLUS -s /nolog << EOF
                                                                 connect / as sysdba
                                                                 spool /tmp/x.x
+                                                                set echo on
                                                                 SELECT log_mode FROM v\$database;
                                                                 spool off
                                                                 exit;
