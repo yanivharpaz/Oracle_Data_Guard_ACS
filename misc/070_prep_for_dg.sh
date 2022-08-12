@@ -343,7 +343,7 @@ prep_dg_01()
         echo "Putting Oracle instance in archivelog $ORACLE_SID."
         $SU -s /bin/bash  $ORACLE_OWNER -c "$SQLPLUS -s /nolog << EOF
                                                                 connect / as sysdba
-                                                                spool x.x
+                                                                spool /tmp/x.x
                                                                 SELECT log_mode FROM v$database;
                                                                 spool off
                                                                 exit;
