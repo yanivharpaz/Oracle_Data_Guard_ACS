@@ -1,30 +1,6 @@
 #!/bin/bash
 #
-# chkconfig: 2345 80 05
-# Description: This script is responsible for taking care of configuring the Oracle Database and its associated services.
-#
-# processname: oracledb_ORCLCDB-19c
-# Red Hat or SuSE config: /etc/sysconfig/oracledb_ORCLCDB-19c
-#
-
-# Set path if path not set
-case $PATH in
-	"") PATH=/bin:/usr/bin:/sbin:/etc
-		 export PATH ;;
-esac
-
-# Setting the required environment variables
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export ORACLE_BASE=/opt/oracle 
-
-export ORACLE_VERSION=19c 
-export ORACLE_SID=ORCLCDB
-export TEMPLATE_NAME=General_Purpose.dbc
-export CHARSET=AL32UTF8
-export PDB_NAME=ORCLPDB1
-export LISTENER_NAME=LISTENER
-export NUMBER_OF_PDBS=1
-export CREATE_AS_CDB=true
 
 # General exports and vars
 export PATH=$ORACLE_HOME/bin:$PATH
@@ -34,14 +10,18 @@ DBCA=$ORACLE_HOME/bin/dbca
 NETCA=$ORACLE_HOME/bin/netca
 ORACLE_OWNER=oracle
 RETVAL=0
-CONFIG_NAME="oracledb_$ORACLE_SID-$ORACLE_VERSION.conf"
-CONFIGURATION="/etc/sysconfig/$CONFIG_NAME"
+#CONFIG_NAME="oracledb_$ORACLE_SID-$ORACLE_VERSION.conf"
+#CONFIGURATION="/etc/sysconfig/$CONFIG_NAME"
+
+NEW_CONFIG_NAME="oracle_rdbms_config_sample.conf"
+NEW_CONFIGURATION="/tmp/$NEW_CONFIG_NAME"
+
+. "$NEW_CONFIGURATION"
 
 # Commands
 if [ -z "$SU" ];then SU=/bin/su; fi
 if [ -z "$GREP" ]; then GREP=/usr/bin/grep; fi
 if [ ! -f "$GREP" ]; then GREP=/bin/grep; fi
-
 
 # Entry point to configure the DB
 configure()
@@ -111,35 +91,34 @@ prep_dg_01()
 
         echo "Putting Oracle instance in archivelog $ORACLE_SID."
         $SU -s /bin/bash  $ORACLE_OWNER -c "$SQLPLUS -s /nolog << EOF
-                                                                connect / as sysdba
-                                                                spool /tmp/x.x
-                                                                set echo on
-                                                                SELECT log_mode FROM v\\\$database;
-                                                                select member from v\\\$logfile;
-                                                                alter system set db_recovery_file_dest_size=10G scope=both sid='*';
-                                                                alter system set db_recovery_file_dest='$ORACLE_BASE/oradata' scope=both sid='*';
-                                                                SHUTDOWN IMMEDIATE;
-                                                                STARTUP MOUNT;
-                                                                ALTER DATABASE ARCHIVELOG;
-                                                                ALTER DATABASE OPEN;
-                                                                ALTER DATABASE FORCE LOGGING;
-                                                                ALTER SYSTEM SWITCH LOGFILE;
-                                                                select 'Oracle SID: $ORACLE_SID' AS SID FROM DUAL;
+            connect / as sysdba
+            spool /tmp/prep_dg.log
+            set echo on
+            SELECT log_mode FROM v\\\$database;
+            select member from v\\\$logfile;
+            alter system set db_recovery_file_dest_size=10G scope=both sid='*';
+            alter system set db_recovery_file_dest='$ORACLE_BASE/oradata' scope=both sid='*';
+            SHUTDOWN IMMEDIATE;
+            STARTUP MOUNT;
+            ALTER DATABASE ARCHIVELOG;
+            ALTER DATABASE OPEN;
+            ALTER DATABASE FORCE LOGGING;
+            ALTER SYSTEM SWITCH LOGFILE;
+            select 'Oracle SID: $ORACLE_SID' AS SID FROM DUAL;
 
-                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo01.log') SIZE 200M;
-                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo02.log') SIZE 200M;
-                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo03.log') SIZE 200M;
-                                                                ALTER DATABASE ADD STANDBY LOGFILE ('/opt/oracle/oradata/$ORACLE_SID/standby_redo04.log') SIZE 200M;
+            ALTER DATABASE ADD STANDBY LOGFILE ('$ORACLE_REDO_LOCATION/standby_redo01.log') SIZE 200M;
+            ALTER DATABASE ADD STANDBY LOGFILE ('$ORACLE_REDO_LOCATION/standby_redo02.log') SIZE 200M;
+            ALTER DATABASE ADD STANDBY LOGFILE ('$ORACLE_REDO_LOCATION/standby_redo03.log') SIZE 200M;
+            ALTER DATABASE ADD STANDBY LOGFILE ('$ORACLE_REDO_LOCATION/standby_redo04.log') SIZE 200M;
 
+            ALTER DATABASE FLASHBACK ON;
+            ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;
 
-                                                                ALTER DATABASE FLASHBACK ON;
-                                                                ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;
-
-                                                                SELECT log_mode FROM v\\\$database;
-                                                                select member from v\\\$logfile;
-                                                                spool off
-                                                                exit;
-                                                                EOF" 
+            SELECT log_mode FROM v\\\$database;
+            select member from v\\\$logfile;
+            spool off
+            exit;
+            EOF" 
         RETVAL1=$?
         if [ $RETVAL1 -eq 0 ]
         then
@@ -155,14 +134,13 @@ prep_dg_01()
     then
         return 0
      else
-        echo "Failed to start Oracle Net Listener using $ORACLE_HOME/bin/tnslsnr and Oracle Database using $ORACLE_HOME/bin/sqlplus."
+        echo "Failed to prepare database instance for data guard."
         exit 1
     fi
 }
 
 
 prep_dg_01
-
-cat /tmp/x.x
+cat /tmp/prep_dg.log
 
 exit 0
