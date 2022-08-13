@@ -175,7 +175,9 @@ test_setup_change_sys_password() {
     cat > $ORACLE_TEST_CHANGE_SYS_PASSWORD << EOF
 connect / as sysdba
 ALTER user sys identified by $SYS_PASSWORD;
-EXIT;    
+EXIT;
+EOF
+chmod +x $ORACLE_TEST_CHANGE_SYS_PASSWORD
 }
 
 prep_standby_init_ora
