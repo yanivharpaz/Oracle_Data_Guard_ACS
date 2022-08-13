@@ -129,6 +129,12 @@ connect / as sysdba
 ALTER SYSTEM SET dg_broker_start=true;
 EXIT;
 EOF
+
+    cat > $ORACLE_DG_BROKER_START_BASH << EOF
+#!/bin/bash
+sqlplus / as sysdba @$ORACLE_DG_BROKER_START
+EOF
+chmod +x $ORACLE_DG_BROKER_START_BASH
 }
 
 mkdir_commands() {
