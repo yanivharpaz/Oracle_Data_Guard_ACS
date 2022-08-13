@@ -193,6 +193,26 @@ EOF
 chmod +x $ORACLE_RESTART_LISTENER
 }
 
+copy_tns_files_primary() {
+    # copy tns files
+    echo "copying tns files -> $ORACLE_COPY_TNS_FILES_PRIMARY"
+    cat > $ORACLE_COPY_TNS_FILES_PRIMARY << EOF
+cp -pvf /tmp/tnsnames.ora $ORACLE_HOME/network/admin
+cp -pvf /tmp/listener_primary.ora $ORACLE_HOME/network/admin/listener.ora
+EOF
+chmod +x $ORACLE_COPY_TNS_FILES_PRIMARY
+}
+
+copy_tns_files_standby() {
+    # copy tns files
+    echo "copying tns files -> $ORACLE_COPY_TNS_FILES_STANDBY"
+    cat > $ORACLE_COPY_TNS_FILES_STANDBY << EOF
+cp -pvf /tmp/tnsnames.ora $ORACLE_HOME/network/admin
+cp -pvf /tmp/listener_standby.ora $ORACLE_HOME/network/admin/listener.ora
+EOF
+chmod +x $ORACLE_COPY_TNS_FILES_STANDBY
+}
+
 prep_standby_init_ora
 create_primary_listener_ora
 create_tnsnames_ora
@@ -205,3 +225,6 @@ orapwd_command
 startup_nomount
 test_setup_change_sys_password
 restart_listener
+copy_tns_files_primary
+copy_tns_files_standby
+
