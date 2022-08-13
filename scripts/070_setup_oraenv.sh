@@ -6,6 +6,7 @@ sudo cat >> /tmp/oracle_bashrc << EOF
 #variables
 
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
+export ORACLE_BASE=/opt/oracle
 #export ORACLE_SID=ORCLCDB
 export ORACLE_SID=CDB1
 

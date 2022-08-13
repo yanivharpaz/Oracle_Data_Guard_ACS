@@ -38,6 +38,7 @@ export LC_COLLATE=C
 export LC_CTYPE=en_US.UTF-8
 alias pmon='ps -ef | grep pmon | grep -v grep'
 alias ll='ls -ltrh'
+alias 2ora='sudo su - oracle'
 EOF
 fi
 
