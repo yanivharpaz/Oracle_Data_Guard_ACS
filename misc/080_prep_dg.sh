@@ -118,10 +118,10 @@ prep_dg_01()
                                                                 select member from v\\\$logfile;
                                                                 alter system set db_recovery_file_dest_size=10G scope=both sid='*';
                                                                 alter system set db_recovery_file_dest='$ORACLE_BASE/oradata' scope=both sid='*';
-                                                                REM SHUTDOWN IMMEDIATE;
-                                                                REM STARTUP MOUNT;
-                                                                REM ALTER DATABASE ARCHIVELOG;
-                                                                REM ALTER DATABASE OPEN;
+                                                                SHUTDOWN IMMEDIATE;
+                                                                STARTUP MOUNT;
+                                                                ALTER DATABASE ARCHIVELOG;
+                                                                ALTER DATABASE OPEN;
                                                                 ALTER DATABASE FORCE LOGGING;
                                                                 ALTER SYSTEM SWITCH LOGFILE;
                                                                 select 'Oracle SID: $ORACLE_SID' AS SID FROM DUAL;
