@@ -220,6 +220,23 @@ EOF
 chmod +x $ORACLE_COPY_TNS_FILES_STANDBY
 }
 
+dgmgrl_sql_script() {
+    # create dgmgrl sql script
+    echo "creating dgmgrl sql script -> $ORACLE_DGMGRL_SQL_SCRIPT"
+    cat > $ORACLE_DGMGRL_SQL_SCRIPT << EOF
+CREATE CONFIGURATION my_dg_config AS PRIMARY DATABASE IS $ORACLE_SID CONNECT IDENTIFIER IS $ORACLE_SID;
+ADD DATABASE $ORACLE_STANDBY_TNS AS CONNECT IDENTIFIER IS $ORACLE_STANDBY_TNS MAINTAINED AS PHYSICAL;
+ENABLE CONFIGURATION;
+EOF
+
+    cat > $ORACLE_DGMGRL_BASH << EOF
+#!/bin/bash
+dgmgrl -silent sys/$SYS_PASSWORD@$ORACLE_SID @$ORACLE_DGMGRL_SQL_SCRIPT
+EOF
+chmod +x $ORACLE_DGMGRL_BASH
+
+}
+
 prep_standby_init_ora
 create_primary_listener_ora
 create_tnsnames_ora
@@ -235,4 +252,4 @@ test_setup_change_sys_password
 restart_listener
 copy_tns_files_primary
 copy_tns_files_standby
-
+dgmgrl_sql_script
