@@ -146,6 +146,38 @@ EOF
 chmod +x $ORACLE_COMMANDS_DIR
 }
 
+orapwd_command() {
+    # create orapwd command file
+    echo "creating orapwd command file -> $ORACLE_ORAPWD_CMD"
+    cat > $ORACLE_ORAPWD_CMD << EOF
+orapwd file=$ORACLE_HOME/dbs/orapw$ORACLE_SID password=$SYS_PASSWORD entries=10
+EOF
+chmod +x $ORACLE_ORAPWD_CMD
+}
+
+startup_nomount() {
+    # create startup_nomount command file
+    echo "creating startup_nomount command file -> $ORACLE_STARTUP_NOMOUNT_CMD"
+    cat > /tmp/startup_nomount.sql << EOF
+startup nomount pfile=$ORACLE_TEMP_INIT_ORA
+exit;
+EOF
+
+    cat > $ORACLE_STARTUP_NOMOUNT_CMD << EOF
+sqlplus / as sysdba @/tmp/startup_nomount.sql
+EOF
+chmod +x $ORACLE_STARTUP_NOMOUNT_CMD
+}
+
+test_setup_change_sys_password() {
+    # test the setup change sys password command
+    echo "testing the setup change sys password command -> $ORACLE_TEST_CHANGE_SYS_PASSWORD"
+    cat > $ORACLE_TEST_CHANGE_SYS_PASSWORD << EOF
+connect / as sysdba
+ALTER user sys identified by $SYS_PASSWORD;
+EXIT;    
+}
+
 prep_standby_init_ora
 create_primary_listener_ora
 create_tnsnames_ora
@@ -154,4 +186,7 @@ create_standby_listener_ora
 create_rman_restore_command
 create_rman_restore_step
 mkdir_commands
+orapwd_command
+startup_nomount
+
 
