@@ -177,7 +177,11 @@ connect / as sysdba
 ALTER user sys identified by $SYS_PASSWORD;
 EXIT;
 EOF
-chmod +x $ORACLE_TEST_CHANGE_SYS_PASSWORD
+
+cat > $ORACLE_TEST_CHANGE_SYS_PASSWORD_BASH << EOF
+sqlplus /nolog @/tmp/$ORACLE_TEST_CHANGE_SYS_PASSWORD
+EOF
+chmod +x $ORACLE_TEST_CHANGE_SYS_PASSWORD_BASH
 }
 
 restart_listener() {
