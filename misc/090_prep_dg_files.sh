@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cp -pvf ~vscode/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
+sudo chmod 666 /tmp/oracle_rdbms_config_sample.conf
 
 export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
 
