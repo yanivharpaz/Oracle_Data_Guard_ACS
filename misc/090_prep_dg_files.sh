@@ -214,8 +214,8 @@ copy_tns_files_standby() {
     # copy tns files
     echo "copying tns files -> $ORACLE_COPY_TNS_FILES_STANDBY"
     cat > $ORACLE_COPY_TNS_FILES_STANDBY << EOF
-cp -pvf /tmp/tnsnames.ora $ORACLE_HOME/network/admin
-cp -pvf /tmp/listener_standby.ora $ORACLE_HOME/network/admin/listener.ora
+cp -pvf $ORACLE_TNSNAMES_ORA $ORACLE_HOME/network/admin
+cp -pvf $ORACLE_LISTENER_ORA_STBY $ORACLE_HOME/network/admin/listener.ora
 EOF
 chmod +x $ORACLE_COPY_TNS_FILES_STANDBY
 }
