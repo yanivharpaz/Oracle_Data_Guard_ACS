@@ -143,7 +143,7 @@ mkdir -p $ORACLE_INSTANCE_LOCATION/pdbseed
 mkdir -p $ORACLE_ADMIN_DEST/adump
 EOF
 
-    mkdir -p $ORACLE_COMMANDS_DIR
+chmod +x $ORACLE_COMMANDS_DIR
 }
 
 prep_standby_init_ora
