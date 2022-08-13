@@ -119,10 +119,32 @@ create_rman_restore_step() {
     cat > $ORACLE_RMAN_LOGIN << EOF
 rman TARGET sys/$SYS_PASSWORD@$ORACLE_PRIMARY_SID AUXILIARY sys/$SYS_PASSWORD@$ORACLE_STANDBY_TNS cmdfile=$ORACLE_RMAN_CMD
 EOF
-    
-
+chmod +x $ORACLE_RMAN_LOGIN
 }
 
+dg_broker_start() {
+    cat > $ORACLE_DG_BROKER_START << EOF
+connect / as sysdba
+ALTER SYSTEM SET dg_broker_start=true;
+EXIT;
+EOF
+}
+
+mkdir_commands() {
+    # create commands directory
+    echo "creating commands directory -> $ORACLE_COMMANDS_DIR"
+    cat > $ORACLE_COMMANDS_DIR << EOF
+mkdir -p $ORACLE_INSTANCE_LOCATION/archivelog
+mkdir -p $ORACLE_INSTANCE_LOCATION/autobackup
+mkdir -p $ORACLE_INSTANCE_LOCATION/flashback
+mkdir -p $ORACLE_INSTANCE_LOCATION/ORCLPDB1
+mkdir -p $ORACLE_INSTANCE_LOCATION/pdbseed
+
+mkdir -p $ORACLE_ADMIN_DEST/adump
+EOF
+
+    mkdir -p $ORACLE_COMMANDS_DIR
+}
 
 prep_standby_init_ora
 create_primary_listener_ora
