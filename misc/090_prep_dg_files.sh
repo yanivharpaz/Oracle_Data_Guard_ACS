@@ -234,7 +234,20 @@ EOF
 dgmgrl -silent sys/$SYS_PASSWORD@$ORACLE_SID @$ORACLE_DGMGRL_SQL_SCRIPT
 EOF
 chmod +x $ORACLE_DGMGRL_BASH
+}
 
+dgmgrl_show_config() {
+    # create dgmgrl show config command
+    echo "creating dgmgrl show config command -> $ORACLE_DGMGRL_SHOW_CONFIG"
+    cat > $ORACLE_DGMGRL_SHOW_CONFIG << EOF
+show configuration;
+exit;
+EOF
+    cat > $ORACLE_DGMGRL_SHOW_CONFIG_BASH << EOF
+#!/bin/bash
+dgmgrl -silent sys/$SYS_PASSWORD@$ORACLE_SID @$ORACLE_DGMGRL_SHOW_CONFIG
+EOF
+    chmod +x $ORACLE_DGMGRL_SHOW_CONFIG_BASH
 }
 
 prep_standby_init_ora
@@ -253,3 +266,6 @@ restart_listener
 copy_tns_files_primary
 copy_tns_files_standby
 dgmgrl_sql_script
+dgmgrl_show_config
+
+
