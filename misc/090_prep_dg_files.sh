@@ -243,6 +243,7 @@ dgmgrl_show_config() {
 show configuration;
 exit;
 EOF
+    chmod 666 $ORACLE_DGMGRL_SHOW_CONFIG
     cat > $ORACLE_DGMGRL_SHOW_CONFIG_BASH << EOF
 #!/bin/bash
 dgmgrl -silent sys/$SYS_PASSWORD@$ORACLE_SID @$ORACLE_DGMGRL_SHOW_CONFIG
