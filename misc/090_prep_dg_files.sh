@@ -180,6 +180,15 @@ EOF
 chmod +x $ORACLE_TEST_CHANGE_SYS_PASSWORD
 }
 
+restart_listener() {
+    # restart listener
+    echo "restarting listener -> $ORACLE_RESTART_LISTENER"
+    cat > $ORACLE_RESTART_LISTENER << EOF
+lsnrctl stop ; lsnrctl start
+EOF
+chmod +x $ORACLE_RESTART_LISTENER
+}
+
 prep_standby_init_ora
 create_primary_listener_ora
 create_tnsnames_ora
@@ -190,5 +199,5 @@ create_rman_restore_step
 mkdir_commands
 orapwd_command
 startup_nomount
-
-
+test_setup_change_sys_password
+restart_listener
