@@ -93,18 +93,19 @@ prep_dg_01()
     fi
 }
 
-run_all_scripts() {
+run_scripts_primary() {
     # /tmp/080_prep_dg.sh
     /bin/bash -c "sudo /tmp/setup_cdb1.sh configure"
     $SU -s /bin/bash  $ORACLE_OWNER -c "/tmp/210_change_sys_password.sh"
     /bin/bash -c "/tmp/080_prep_dg.sh"
-
-
+    $SU -s /bin/bash  $ORACLE_OWNER -c "/tmp/310_copy_tns_files_primary.sh"
+    $SU -s /bin/bash  $ORACLE_OWNER -c "/tmp/120_dg_broker_start.sh"
+    $SU -s /bin/bash  $ORACLE_OWNER -c "/tmp/110_restart_listener.sh"
 
 }
 #prep_dg_01
 #cat /tmp/prep_dg.log
 
-run_all_scripts
+run_scripts_primary
 
 exit 0
