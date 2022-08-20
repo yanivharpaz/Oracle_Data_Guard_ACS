@@ -63,6 +63,9 @@ sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/070_setup_oraenv.sh
 sudo ./Oracle_Data_Guard_ACS/misc/090_prep_dg_files.sh
 
+source ~/.bashrc
+
+
 ```
 
 
