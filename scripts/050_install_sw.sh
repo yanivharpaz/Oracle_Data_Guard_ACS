@@ -6,7 +6,7 @@ sudo yum localinstall -y /tmp/oracle-database-ee-19c-1.0-1.x86_64.rpm
 sudo sed 's/ORACLE_SID=ORCLCDB/ORACLE_SID=CDB1/g' /etc/init.d/oracledb_ORCLCDB-19c > /tmp/setup_cdb1.sh
 sudo chmod +x /tmp/setup_cdb1.sh
 
-echo "Setup CDB1 - (sudo or under root) execute:   time sudo /tmp/setup_cdb1.sh configure "
+echo "Setup CDB1 - (sudo or under root) execute:   time sudo ~/ACS-IL-Oracle-RDBMS-Data-Guard/scripts/150_create_instance.sh CDB1 "
 sudo cp -pv /tmp/setup_cdb1.sh $HOME/Oracle_Data_Guard_ACS/scripts
 sudo cp -pv /etc/sysconfig/oracledb_ORCLCDB-19c.conf /etc/sysconfig/oracledb_CDB1-19c.conf
 
