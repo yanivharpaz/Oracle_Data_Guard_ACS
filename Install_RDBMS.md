@@ -63,8 +63,11 @@ sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/070_setup_oraenv.sh
 sudo ./Oracle_Data_Guard_ACS/misc/090_prep_dg_files.sh
 
-source ~/.bashrc
 
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
+
+source ~/.bashrc
+cat ~/.ssh/id_rsa.pub
 
 ```
 
