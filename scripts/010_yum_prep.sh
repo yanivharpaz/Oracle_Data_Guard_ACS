@@ -10,7 +10,7 @@ sudo yum update -y
 
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-sudo yum install -y epel-release apt-transport-https conntrack git mc ncdu zsh htop vim gcc jq
+sudo yum install -y epel-release apt-transport-https conntrack git mc ncdu zsh htop vim gcc jq ftp 
 sudo yum install -y python36 python36-devel python36-pip python-devel python-virtualenv
 sudo yum install -y bind-utils mlocated yum-utils createrepo bin-utils openssh-clients perl parted
 
@@ -25,7 +25,9 @@ sudo yum install -y btrfs-progs btrfs-progs-devel
 sudo yum install -y yum-utils zip unzip htop
 
 sudo yum -y groupinstall "Development Tools"
-sudo yum -y install openssl-devel bzip2-devel libffi-devel xz-devel
+sudo yum install -y openssl-devel bzip2-devel libffi-devel xz-devel
+
+sudo yum install -y python3-pip
 
 if [[ $(grep -c pmon ~/.bashrc) > 0 ]]; then
     echo "already got pmon alias"
