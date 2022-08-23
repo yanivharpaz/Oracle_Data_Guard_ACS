@@ -7,7 +7,7 @@ export LC_COLLATE=C
 export LC_CTYPE=en_US.UTF-8
 
 sudo yum update -y
-
+sudo yum-complete-transaction
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 sudo yum install -y epel-release apt-transport-https conntrack git mc ncdu zsh htop vim gcc jq ftp 
