@@ -62,6 +62,7 @@ sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/050_install_sw.sh
 ./Oracle_Data_Guard_ACS/scripts/070_setup_oraenv.sh
 
+sudo pip3 install pyftpdlib wheel cython
 
 ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
 
