@@ -1,11 +1,12 @@
 import os
+import sys 
 import socket 
 
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler
 from pyftpdlib.servers import FTPServer
 
-def main():
+def main(port_to_use):
     # Instantiate a dummy authorizer for managing 'virtual' users
     authorizer = DummyAuthorizer()
 
@@ -28,7 +29,7 @@ def main():
 
     # Instantiate FTP server class and listen on 0.0.0.0:2121
     # address = ('', 2121)
-    address = (socket.gethostname(), 1521)
+    address = (socket.gethostname(), port_to_use)
     server = FTPServer(address, handler)
 
     # set a limit for connections
@@ -39,4 +40,8 @@ def main():
     server.serve_forever()
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: %s port" % sys.argv[0])
+        sys.exit(1)
+    port_to_use = int(sys.argv[1])
+    main(port_to_use)
