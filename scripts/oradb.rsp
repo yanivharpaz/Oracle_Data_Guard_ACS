@@ -237,12 +237,12 @@ oracle.install.db.config.starterdb.password.ALL=
 #-------------------------------------------------------------------------------
 # Specify the SYS password for the starter database.
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.password.SYS=yaniv
+oracle.install.db.config.starterdb.password.SYS=Yaniv_123
 
 #-------------------------------------------------------------------------------
 # Specify the SYSTEM password for the starter database.
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.password.SYSTEM=yaniv
+oracle.install.db.config.starterdb.password.SYSTEM=Yaniv_123
 
 #-------------------------------------------------------------------------------
 # Specify the DBSNMP password for the starter database.
