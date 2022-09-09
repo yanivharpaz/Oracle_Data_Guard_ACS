@@ -1,5 +1,8 @@
+cd ~
+git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git
+cp ~/Oracle_Data_Guard_ACS/scripts/* /tmp
 
-
+cd /tmp
 sudo yum localinstall -y /tmp/oracle-database-preinstall-19c-1.0-2.el7.x86_64.rpm
 
 sudo mkdir -p -m 755 /u01/app/oracle/product/19.0.0/dbhome_1
@@ -9,10 +12,13 @@ sudo -u oracle mv /tmp/LINUX.X64_193000_db_home.zip /u01/app/oracle/product/19.0
 cd /u01/app/oracle/product/19.0.0/dbhome_1
 sudo -u oracle unzip LINUX.X64_193000_db_home.zip
 
+sudo chmod +x /tmp/*.sh
+sudo /tmp/orainstRoot.sh
+sudo /tmp/root.sh
 
-/u01/app/oracle/product/19.0.0/dbhome_1/runInstaller.sh -silent -ignoreSysPrereqs -responseFile /tmp/oradb.rsp
+sudo -u oracle /u01/app/oracle/product/19.0.0/dbhome_1/runInstaller -silent -responseFile /tmp/oradb.rsp
 
 sudo /u01/app/oracle/product/19.0.0/dbhome_1/root.sh
 
-/u01/app/oracle/product/19.0.0/dbhome_1/runInstaller  -executeConfigTools -responseFile /tmp/oradb.rsp -silent
+sudo -u oracle /u01/app/oracle/product/19.0.0/dbhome_1/runInstaller  -executeConfigTools -responseFile /tmp/oradb.rsp -silent
 
