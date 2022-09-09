@@ -22,3 +22,10 @@ sudo /u01/app/oracle/product/19.0.0/dbhome_1/root.sh
 
 sudo -u oracle /u01/app/oracle/product/19.0.0/dbhome_1/runInstaller  -executeConfigTools -responseFile /tmp/oradb.rsp -silent
 
+sudo echo "export ORACLE_HOME=/u01/app/oracle/product/19.0.0/dbhome_1" >> /home/oracle/.bashrc
+sudo echo "export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib" >> /home/oracle/.bashrc
+sudo echo "export ORACLE_SID=CDB1" >> /home/oracle/.bashrc
+sudo echo "export ORACLE_BASE=/u01/app/oracle" >> /home/oracle/.bashrc
+sudo echo "export ORACLE_UNQNAME=CDB1" >> /home/oracle/.bashrc
+sudo echo "export PATH=\$PATH:\$ORACLE_HOME/bin" >> /home/oracle/.bashrc
+
