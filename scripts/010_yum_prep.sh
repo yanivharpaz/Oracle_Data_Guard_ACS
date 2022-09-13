@@ -29,6 +29,8 @@ sudo yum install -y openssl-devel bzip2-devel libffi-devel xz-devel
 
 sudo yum install -y python3-pip
 
+sudo pip3 install wheel cython pyftpdlib
+
 if [[ $(grep -c pmon ~/.bashrc) > 0 ]]; then
     echo "already got pmon alias"
 else
