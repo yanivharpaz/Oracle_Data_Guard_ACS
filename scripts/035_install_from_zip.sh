@@ -38,8 +38,8 @@ alias dbs='cd \$ORACLE_HOME/dbs'
 alias bdump='cd \$ORACLE_BASE/diag/rdbms'
 alias ll='ls -ltrh'
 alias restart_listener='lsnrctl stop; lsnrctl start'
-alias drclog='less +F $(find /opt/oracle/diag/ -name "drc*")'
-alias alertfind='find /opt/oracle/diag/ -name "alert_*" -exec ls -lh {} \;'
+alias drclog='less +F $(find \$ORACLE_BASE/diag/ -name "drc*")'
+alias alertfind='find \$ORACLE_BASE/diag/ -name "alert_*" -exec ls -lh {} \;'
 
 EOF
 
