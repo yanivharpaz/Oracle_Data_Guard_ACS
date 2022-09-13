@@ -29,3 +29,17 @@ sudo echo "export ORACLE_BASE=/u01/app/oracle" >> /home/oracle/.bashrc
 sudo echo "export ORACLE_UNQNAME=CDB1" >> /home/oracle/.bashrc
 sudo echo "export PATH=\$PATH:\$ORACLE_HOME/bin" >> /home/oracle/.bashrc
 
+sudo cat >> /home/oracle/.bashrc << EOF
+
+alias sss='sqlplus / as sysdba'
+alias pmon='ps -ef | grep pmon | grep -v grep'
+alias cdnet='cd \$ORACLE_HOME/network/admin'
+alias dbs='cd \$ORACLE_HOME/dbs'
+alias bdump='cd \$ORACLE_BASE/diag/rdbms'
+alias ll='ls -ltrh'
+alias restart_listener='lsnrctl stop; lsnrctl start'
+alias drclog='less +F $(find /opt/oracle/diag/ -name "drc*")'
+alias alertfind='find /opt/oracle/diag/ -name "alert_*" -exec ls -lh {} \;'
+
+EOF
+

@@ -62,6 +62,13 @@ cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
 sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/010_yum_prep.sh
 ./Oracle_Data_Guard_ACS/scripts/030_sw_dl.sh
+
+sudo mkdir -p /mnt/resource/oracle
+sudo chown oracle:oinstall /mnt/resource/oracle/
+
+# sudo mv /tmp/*.rpm /mnt/resource/oracle/
+# sudo mv /tmp/LINUX.X64_* /mnt/resource/oracle/
+
 ./Oracle_Data_Guard_ACS/scripts/050_install_sw.sh
 ./Oracle_Data_Guard_ACS/scripts/070_setup_oraenv.sh
 
