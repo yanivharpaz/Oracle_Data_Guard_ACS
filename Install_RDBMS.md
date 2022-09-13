@@ -112,6 +112,16 @@ Traceback (most recent call last):
 socket.timeout: timed out
 ```
 
+## increase volume size
+```
+sudo fdisk /dev/sda < ~/Oracle_Data_Guard_ACS/misc/fdisk_input.txt
+
+# after reboot
+sudo xfs_growfs /
+
+```
+
+
 Thank you for reading.  
   
 
