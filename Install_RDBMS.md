@@ -44,7 +44,53 @@ To configure a sample Oracle Database you can execute the following service conf
 sudo /etc/init.d/oracledb_ORCLCDB-19c configure
 ```
 
-## Run prep -> software installation 
+## Run prep -> software installation (zip file and response file) 
+```
+# install git
+sudo yum install -y git wget
+
+# Clone the scripts repo
+git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git  
+git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
+
+cd ~
+cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
+cp -pvf ~/Oracle_Data_Guard_ACS/misc/110_restart_listener.sh /tmp
+cp -pvf ~/Oracle_Data_Guard_ACS/misc/210_change_sys_password.sh /tmp
+cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
+
+sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
+./Oracle_Data_Guard_ACS/scripts/010_yum_prep.sh
+./Oracle_Data_Guard_ACS/scripts/030_sw_dl.sh
+./Oracle_Data_Guard_ACS/scripts/035_install_from_zip.sh
+
+# for software and database creation
+# ./Oracle_Data_Guard_ACS/scripts/040_install_full.sh
+
+# for software only installation
+# ./Oracle_Data_Guard_ACS/scripts/045_install_sw_only.sh
+
+
+sudo mkdir -p /mnt/resource/oracle
+sudo chown oracle:oinstall /mnt/resource/oracle/
+
+# sudo mv /tmp/*.rpm /mnt/resource/oracle/
+# sudo mv /tmp/LINUX.X64_* /mnt/resource/oracle/
+
+# ./Oracle_Data_Guard_ACS/scripts/050_install_sw.sh
+# ./Oracle_Data_Guard_ACS/scripts/070_setup_oraenv.sh
+
+sudo pip3 install pyftpdlib wheel cython
+
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1
+
+source ~/.bashrc
+cat ~/.ssh/id_rsa.pub
+
+```
+
+
+## Run prep -> software installation (RPM) 
 ```
 # install git
 sudo yum install -y git wget
