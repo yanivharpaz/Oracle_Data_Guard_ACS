@@ -38,12 +38,12 @@ UNIX_GROUP_NAME=oinstall
 # This is an optional parameter if installing on
 # Windows based Operating System.
 #-------------------------------------------------------------------------------
-INVENTORY_LOCATION=/u01/app/oraInventory
+INVENTORY_LOCATION=/oracle/ora19/oraInventory
 
 #-------------------------------------------------------------------------------
 # Specify the complete path of the Oracle Base. 
 #-------------------------------------------------------------------------------
-ORACLE_BASE=/u01/app/oracle
+ORACLE_BASE=/oracle/ora19
 
 #-------------------------------------------------------------------------------
 # Specify the installation edition of the component.                     
@@ -173,17 +173,17 @@ oracle.install.db.config.starterdb.type=GENERAL_PURPOSE
 #-------------------------------------------------------------------------------
 # Specify the Starter Database Global Database Name. 
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.globalDBName=CDB1
+oracle.install.db.config.starterdb.globalDBName=ora19
 
 #-------------------------------------------------------------------------------
 # Specify the Starter Database SID.
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.SID=CDB1
+oracle.install.db.config.starterdb.SID=ora19
 
 #-------------------------------------------------------------------------------
 # Specify the  Pluggable Database name for the pluggable database in Container Database.
 #-------------------------------------------------------------------------------
-oracle.install.db.config.PDBName=pdb1
+oracle.install.db.config.PDBName=ora19pdb
 
 #-------------------------------------------------------------------------------
 # Specify the Starter Database character set.
@@ -315,14 +315,14 @@ oracle.install.db.config.starterdb.storageType=FILE_SYSTEM_STORAGE
 #
 # Applicable only when oracle.install.db.config.starterdb.storage=FILE_SYSTEM_STORAGE 
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.fileSystemStorage.dataLocation=/u01/app/oracle/oradata
+oracle.install.db.config.starterdb.fileSystemStorage.dataLocation=/oracle/ora19/oradata
 
 #-------------------------------------------------------------------------------
 # Specify the recovery location.
 #
 # Applicable only when oracle.install.db.config.starterdb.storage=FILE_SYSTEM_STORAGE 
 #-------------------------------------------------------------------------------
-oracle.install.db.config.starterdb.fileSystemStorage.recoveryLocation=/u01/app/oracle/recovery_area
+oracle.install.db.config.starterdb.fileSystemStorage.recoveryLocation=/oracle/ora19/recovery_area
 
 #-------------------------------------------------------------------------------
 # Specify the existing ASM disk groups to be used for storage.
