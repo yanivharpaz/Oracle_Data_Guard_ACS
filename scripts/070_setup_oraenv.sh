@@ -5,8 +5,8 @@ sudo chmod 777 /tmp/oracle_bashrc
 sudo cat >> /tmp/oracle_bashrc << EOF
 #variables
 
-export ORACLE_HOME=/opt/oracle/product/19c/dbhome_1
-export ORACLE_BASE=/opt/oracle
+export ORACLE_HOME=/opt/oraServer/ora19
+export ORACLE_BASE=/oracle/ora19
 #export ORACLE_SID=ORCLCDB
 export ORACLE_SID=CDB1
 
@@ -20,8 +20,8 @@ alias dbs='cd \$ORACLE_HOME/dbs'
 alias bdump='cd \$ORACLE_BASE/diag/rdbms'
 alias ll='ls -ltrh'
 alias restart_listener='lsnrctl stop; lsnrctl start'
-alias drclog='less +F $(find /opt/oracle/diag/ -name "drc*")'
-alias alertfind='find /opt/oracle/diag/ -name "alert_*" -exec ls -lh {} \;'
+alias drclog='less +F $(find /oracle/ora19/diag/ -name "drc*")'
+alias alertfind='find /oracle/ora19/diag/ -name "alert_*" -exec ls -lh {} \;'
 
 EOF
 
