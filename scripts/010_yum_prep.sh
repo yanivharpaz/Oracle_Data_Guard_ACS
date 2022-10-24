@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "yum install RPMs for the Oracle RDMS Software"
+echo "yum install RPMs for the Oracle RDBMS Software"
 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
