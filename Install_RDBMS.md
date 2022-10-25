@@ -54,10 +54,10 @@ git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git
 git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
 
 cd ~
-cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/110_restart_listener.sh /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/210_change_sys_password.sh /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
+#cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/110_restart_listener.sh /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/210_change_sys_password.sh /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
 
 sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/010_yum_prep.sh
@@ -100,10 +100,10 @@ git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git
 git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
 
 cd ~
-cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/110_restart_listener.sh /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/210_change_sys_password.sh /tmp
-cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
+#cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/110_restart_listener.sh /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/210_change_sys_password.sh /tmp
+#cp -pvf ~/Oracle_Data_Guard_ACS/misc/change_sys_password.sql /tmp
 
 sudo chmod +x ./Oracle_Data_Guard_ACS/scripts/*.sh
 ./Oracle_Data_Guard_ACS/scripts/010_yum_prep.sh
