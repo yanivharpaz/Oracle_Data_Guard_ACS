@@ -51,7 +51,8 @@ sudo yum install -y git wget
 
 # Clone the scripts repo
 git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git  
-git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
+git clone https://github.com/yanivharpaz/acs-il-data-guard-oracle-user.git   
+#git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
 
 cd ~
 #cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
@@ -97,7 +98,8 @@ sudo yum install -y git wget
 
 # Clone the scripts repo
 git clone https://github.com/yanivharpaz/Oracle_Data_Guard_ACS.git  
-git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
+git clone https://github.com/yanivharpaz/acs-il-data-guard-oracle-user.git  
+#git clone https://github.com/yanivharpaz/ACS-IL-Oracle-RDBMS-Data-Guard.git  
 
 cd ~
 #cp ~/Oracle_Data_Guard_ACS/misc/oracle_rdbms_config_sample.conf /tmp
