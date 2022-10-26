@@ -5,8 +5,8 @@ sudo chmod 777 /tmp/oracle_bashrc
 sudo cat >> /tmp/oracle_bashrc << EOF
 #variables
 
-export ORACLE_HOME=ORACLE_HOME=/u01/app/oracle/product/19.0.0/dbhome_1
-export ORACLE_BASE=ORACLE_HOME=/u01/app/oracle
+export ORACLE_HOME=/u01/app/oracle/product/19.0.0/dbhome_1
+export ORACLE_BASE=/u01/app/oracle
 #export ORACLE_SID=ORCLCDB
 export ORACLE_SID=CDB1
 
