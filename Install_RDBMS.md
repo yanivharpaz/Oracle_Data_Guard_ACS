@@ -197,6 +197,11 @@ sudo chmod a+x /usr/sbin/azcopy
 
 ```
 
+Storage account -> Shared access signature
+https://youtu.be/K_2yUH2FqaY
+
+
+
 
 Thank you for reading.  
   
