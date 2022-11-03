@@ -185,6 +185,18 @@ sudo yum install -y azure-cli
 
 ```
 
+## Install azcopy
+
+```
+
+wget https://aka.ms/downloadazcopy-v10-linux
+mv downloadazcopy-v10-linux azcopy.tar.gz
+tar xvf azcopy.tar.gz
+sudo cp ./azcopy_linux_amd*/azcopy /usr/sbin
+sudo chmod a+x /usr/sbin/azcopy
+
+```
+
 
 Thank you for reading.  
   
