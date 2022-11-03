@@ -7,11 +7,11 @@ time dbca -silent -createDatabase \
   -responseFile NO_VALUE \
   -characterSet AL32UTF8 \
   -sysPassword OraPasswd1 \
-  -systemPassword OraPasswd1 \
+  -systemPassword Ora_Passwd1 \
   -createAsContainerDatabase true \
   -numberOfPDBs 1 \
   -pdbName PDB1 \
-  -pdbAdminPassword OraPasswd1 \
+  -pdbAdminPassword Ora_Passwd1 \
   -databaseType MULTIPURPOSE \
   -automaticMemoryManagement false \
   -storageType FS \
